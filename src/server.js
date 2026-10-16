@@ -21,17 +21,17 @@ app.use(helmet());
 
 app.use(cors());
 
-app.use(logger);
+app.use(logger());
 
 app.use(express.json());
 
 app.use(cookieParser())
 // {ROUTES}
 
-app.use(authRouter);
-app.use(userRouter);
+app.use( "/api/auth", authRouter);
+app.use( "/api/users", userRouter);
 app.use(categoriesRouter);
-app.use(storiesRouter);
+app.use( "/api/stories", storiesRouter);
 
 // {ERROR MIDDLEWARE}
 

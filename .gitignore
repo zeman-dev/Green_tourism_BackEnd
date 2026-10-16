@@ -1,3 +1,7 @@
+.vscode
+.DS_Store
+.idea
+
 # Logs
 logs
 *.log
@@ -81,7 +85,6 @@ out
 # Nuxt.js build / generate output
 .nuxt
 dist
-.output
 
 # Gatsby files
 .cache/
@@ -92,8 +95,9 @@ dist
 # vuepress build output
 .vuepress/dist
 
-# vuepress v2.x temp directory
+# vuepress v2.x temp and cache directory
 .temp
+.cache
 
 # Sveltekit cache directory
 .svelte-kit/
@@ -122,11 +126,8 @@ dist
 # TernJS port file
 .tern-port
 
-# Stores Visual Studio Code versions used for testing Visual Studio Code extensions
+# Stores VSCode versions used for testing VSCode extensions
 .vscode-test
-
-# pnpm
-.pnpm-store
 
 # yarn v3
 .pnp.*
@@ -137,13 +138,6 @@ dist
 !.yarn/sdks
 !.yarn/versions
 
-# Vite files
+# Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
-.vite/
-
-# Astro generated types
-.astro/
-
-# Turbo Repo
-.turbo
