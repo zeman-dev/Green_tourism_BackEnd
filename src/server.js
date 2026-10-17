@@ -30,7 +30,6 @@ app.use(cookieParser());
 
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
-app.use('/api/categories', categoriesRouter);
 app.use('/api/stories', storyRouter);
 
 // {ERROR MIDDLEWARE}
@@ -43,7 +42,7 @@ app.use(errorHandler);
 
 // {CONNECTION TO DB}
 
-// await connectMongoDB();
+await connectMongoDB();
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
