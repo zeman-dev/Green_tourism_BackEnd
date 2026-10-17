@@ -1,10 +1,9 @@
-import { Joi, Segments } from "celebrate";
-
+import { Joi, Segments } from 'celebrate';
 
 export const registerUserSchema = {
   [Segments.BODY]: Joi.object({
-    name: Joi.string().max(32).required(),
-    email: Joi.string().email().max(64).required(),
+    username: Joi.string().max(32).required(),
+    email: Joi.string().email().max(64).trim().lowercase().required(),
     password: Joi.string().min(8).max(128).required(),
     avatar: Joi.string()
       .uri({ scheme: ['http', 'https'] })
@@ -13,8 +12,8 @@ export const registerUserSchema = {
 };
 
 export const loginUserSchema = {
-    [Segments.BODY]: Joi.object({
-        email: Joi.string().email().max(64).required(),
-        password: Joi.string().min(8).max(128).required(),
-    })
-}
+  [Segments.BODY]: Joi.object({
+    email: Joi.string().email().max(64).trim().lowercase().required(),
+    password: Joi.string().min(8).max(128).required(),
+  }),
+};
