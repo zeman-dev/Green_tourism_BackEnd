@@ -3,7 +3,7 @@ import createHttpError from 'http-errors';
 import { User } from '../../models/user.js';
 
 export const registerUser = async (req, res) => {
-  const { username, email, password, avatar } = req.body;
+  const { name, email, password, avatar } = req.body;
 
   const existingUser = await User.findOne({ email });
   if (existingUser) {
@@ -13,7 +13,7 @@ export const registerUser = async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const newUser = await User.create({
-    username,
+    name,
     email,
     password: hashedPassword,
     avatar:
