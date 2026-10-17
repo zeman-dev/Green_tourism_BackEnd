@@ -1,6 +1,6 @@
 import { celebrate } from 'celebrate';
 import { Router } from 'express';
-import { getRecommendedStoriesSchema } from '../validations/stroryValidation.js';
+import { getRecommendedStoriesSchema } from '../validations/storyValidation.js';
 import { getRecommendedStories } from '../controllers/stories/storyController.js';
 
 const router = Router();

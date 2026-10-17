@@ -44,7 +44,8 @@ const storySchema = new Schema(
   },
 );
 
-storySchema.index({ rate: -1 });
 storySchema.index({ ownerId: 1 });
+storySchema.index({ rate: -1, _id: 1 });
+storySchema.index({ category: 1, rate: -1, _id: 1 });
 
 export const Story = model('Story', storySchema);
