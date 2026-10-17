@@ -12,7 +12,7 @@ export const getAllStoriesSchema = {
   [Segments.QUERY]: Joi.object({
     page: Joi.number().integer().min(1).default(1),
     perPage: Joi.number().integer().min(5).max(30).default(10),
-    category: Joi.string().trim().optional(),
+    category: Joi.string().hex().length(24).optional(),
     type: Joi.string().valid('popular').optional(),
   }),
 };
