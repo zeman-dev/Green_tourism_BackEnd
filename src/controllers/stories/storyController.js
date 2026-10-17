@@ -11,11 +11,11 @@ export const getAllStories = async (req, res) => {
   const storiesQuery = Story.find();
 
   if (category) {
-    const foundCategory = await Categories.findById(category);
-    if (!foundCategory) {
+    const categoryDoc = await Categories.findOne({ category });
+    if (categoryDoc === null) {
       throw createHttpError(404, 'Category not found');
     }
-    storiesQuery.where('category').equals(foundCategory._id);
+    storiesQuery.where('category').equals(categoryDoc._id);
   }
 
   const [totalStories, stories] = await Promise.all([
