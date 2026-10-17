@@ -30,8 +30,8 @@ app.use(cookieParser());
 
 app.use('/api/auth', authRouter);
 app.use('/api/users', userRouter);
-app.use('/api/categories', categoriesRouter);
 app.use('/api/stories', storyRouter);
+app.use('/api/categories', categoriesRouter);
 
 // {ERROR MIDDLEWARE}
 
