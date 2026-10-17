@@ -6,7 +6,7 @@ import { getRecommendedStories, getAllStories } from '../controllers/stories/sto
 const router = Router();
 
 router.get(
-  '',
+  '/',
   celebrate(getAllStoriesSchema),
   getAllStories,
 );

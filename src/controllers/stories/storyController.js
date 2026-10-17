@@ -18,10 +18,6 @@ export const getAllStories = async (req, res) => {
     storiesQuery.where('category').equals(foundCategory._id);
   }
 
-  if (type === 'popular') {
-    storiesQuery.where('rate').gte(0);
-  }
-
   const [totalStories, stories] = await Promise.all([
     storiesQuery.clone().countDocuments(),
     storiesQuery.sort(sort).skip(skip).limit(perPage),
