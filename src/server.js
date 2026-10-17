@@ -43,7 +43,7 @@ app.use(errorHandler);
 
 // {CONNECTION TO DB}
 
-// await connectMongoDB();
+await connectMongoDB();
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
