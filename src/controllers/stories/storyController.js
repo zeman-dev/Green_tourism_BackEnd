@@ -6,7 +6,7 @@ export const getAllStories = async (req, res) => {
   const { page = 1, perPage = 10, category, type } = req.query;
 
   const skip = (page - 1) * perPage;
-  const popularSort = { rate: -1, _id: 1 };
+  const sort = type === 'popular' ? { rate: -1, _id: 1 } : { createdAt: -1, _id: -1 };
 
   const storiesQuery = Story.find();
 
@@ -19,12 +19,12 @@ export const getAllStories = async (req, res) => {
   }
 
   if (type === 'popular') {
-    storiesQuery.where('rate').gt(0);
+    storiesQuery.where('rate').gte(0);
   }
 
   const [totalStories, stories] = await Promise.all([
     storiesQuery.clone().countDocuments(),
-    storiesQuery.sort(popularSort).skip(skip).limit(perPage),
+    storiesQuery.sort(sort).skip(skip).limit(perPage),
   ]);
 
   const totalPages = Math.ceil(totalStories / perPage);
