@@ -4,6 +4,8 @@ import { User } from '../../models/user.js';
 import { Session } from '../../models/session.js';
 import { createSession, setSessionCookies } from '../../services/auth.js';
 
+
+///// {REGISTER} /////
 export const registerUser = async (req, res) => {
   const { name, email, password, avatar } = req.body;
 
@@ -29,6 +31,7 @@ export const registerUser = async (req, res) => {
   res.status(201).json(newUser);
 };
 
+///// {LOGIN} /////
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -53,6 +56,8 @@ export const loginUser = async (req, res) => {
   res.status(200).json(user);
 };
 
+
+///// {LOGOUT} /////
 export const logoutUser = async (req, res) => {
   const { sessionId } = req.cookies;
 
@@ -63,6 +68,8 @@ export const logoutUser = async (req, res) => {
   res.clearCookie('refreshToken');
 
   res.status(204).send();
+}
+  ///// {REFRESH SESSION} /////
 export const refreshUserSession = async (req, res) => {
   const { sessionId, refreshToken } = req.cookies;
 

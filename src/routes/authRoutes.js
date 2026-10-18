@@ -5,11 +5,11 @@ import {
   registerUser,
   loginUser,
   logoutUser,
+  refreshUserSession,
 } from '../controllers/auth/authController.js';
 
 import { authenticate } from '../middleware/authenticate.js';
 
-import { registerUser, loginUser, refreshUserSession } from '../controllers/auth/authController.js';
 import {
   registerUserSchema,
   loginUserSchema,
@@ -24,7 +24,6 @@ authRouter.post('/login', celebrate(loginUserSchema), loginUser);
 
 authRouter.post('/logout', authenticate, logoutUser);
 
-export default authRouter;
 authRouter.post('/refresh', refreshUserSession);
 
 export default authRouter;
