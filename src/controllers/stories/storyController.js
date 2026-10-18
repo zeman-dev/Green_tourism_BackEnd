@@ -93,21 +93,22 @@ export const getMySavedStories = async (req, res) => {
 
   const skip = (page - 1) * perPage;
 
-  const storiesQuery = Story.find({ _id: { $in: req.user.savedArticles } })
-    .populate('ownerId', 'name avatarUrl');
+  const storiesQuery = Story.find({
+    _id: { $in: req.user.savedArticles },
+  }).populate('ownerId', 'name avatarUrl');
 
-    const [totalStories, stories] = await Promise.all([
+  const [totalStories, stories] = await Promise.all([
     storiesQuery.clone().countDocuments(),
-    storiesQuery.skip(skip).limit(perPage).sort({date: -1, _id: -1}),
+    storiesQuery.skip(skip).limit(perPage).sort({ date: -1, _id: -1 }),
   ]);
 
   const totalPages = Math.ceil(totalStories / perPage);
 
-    res.status(200).json({
+  res.status(200).json({
     page,
     perPage,
     totalStories,
     totalPages,
     stories,
   });
-}
+};
