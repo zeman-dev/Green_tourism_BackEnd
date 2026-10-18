@@ -24,6 +24,11 @@ const userSchema = new Schema(
       type: String,
       default: 'https://ac.goit.global/fullstack/react/default-avatar.jpg',
     },
+    articlesAmount: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
     savedArticles: {
       type: [
         {
