@@ -28,6 +28,7 @@ export const getUserWithStories = async (req, res) => {
       _id: user._id,
       username: user.name,
       avatar: user.avatar,
+      articlesAmount: user.articlesAmount,
     },
     page,
     perPage,
