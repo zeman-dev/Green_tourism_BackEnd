@@ -16,3 +16,9 @@ export const getAllStoriesSchema = {
     type: Joi.string().valid('popular').optional(),
   }),
 };
+
+export const getStoryByIdSchema = {
+  [Segments.PARAMS]: Joi.object({
+    storyId: Joi.string().hex().length(24).required(),
+  }),
+};

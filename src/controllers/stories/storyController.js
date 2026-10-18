@@ -64,3 +64,15 @@ export const getRecommendedStories = async (req, res) => {
     stories,
   });
 };
+
+export const getStoryById = async (req, res) => {
+  const { storyId } = req.params;
+
+  const story = await Story.findById(storyId);
+
+  if (!story) {
+    throw createHttpError(404, 'Story not found');
+  }
+
+  res.status(200).json(story);
+};
