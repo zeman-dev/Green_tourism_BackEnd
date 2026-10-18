@@ -68,7 +68,9 @@ export const getRecommendedStories = async (req, res) => {
 export const getStoryById = async (req, res) => {
   const { storyId } = req.params;
 
-  const story = await Story.findById(storyId);
+  const story = await Story.findById(storyId)
+  .populate('category', 'category')
+  .populate('ownerId', 'name');
 
   if (!story) {
     throw createHttpError(404, 'Story not found');
