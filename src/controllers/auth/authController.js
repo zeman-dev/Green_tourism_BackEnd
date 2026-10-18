@@ -6,7 +6,7 @@ import { Session } from '../../models/session.js';
 
 ///// {REGISTER} /////
 export const registerUser = async (req, res) => {
-  const { name, email, password, avatar } = req.body;
+  const { name, email, password, avatarUrl } = req.body;
 
   const existingUser = await User.findOne({ email });
   if (existingUser) {
@@ -19,8 +19,8 @@ export const registerUser = async (req, res) => {
     name,
     email,
     password: hashedPassword,
-    avatar:
-      avatar || 'https://ac.goit.global/fullstack/react/default-avatar.jpg',
+    avatarUrl:
+      avatarUrl || 'https://ac.goit.global/fullstack/react/default-avatar.jpg',
   });
 
   const newSession = await createSession(newUser._id);
