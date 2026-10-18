@@ -5,20 +5,29 @@ const userSchema = new Schema(
     name: {
       type: String,
       trim: true,
+      required: true,
+      maxlength: 32,
     },
     email: {
       type: String,
       trim: true,
       unique: true,
       required: true,
+      lowercase: true,
     },
     password: {
       type: String,
       required: true,
+      select: false,
     },
     avatar: {
       type: String,
       default: 'https://ac.goit.global/fullstack/react/default-avatar.jpg',
+    },
+    articlesAmount: {
+      type: Number,
+      min: 0,
+      default: 0,
     },
     savedArticles: {
       type: [
