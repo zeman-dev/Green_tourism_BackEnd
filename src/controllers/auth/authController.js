@@ -4,10 +4,9 @@ import { User } from '../../models/user.js';
 import { createSession, setSessionCookies } from '../../services/auth.js';
 import { Session } from '../../models/session.js';
 
-
 ///// {REGISTER} /////
 export const registerUser = async (req, res) => {
-  const { name, email, password, avatar } = req.body;
+  const { name, email, password, avatarUrl } = req.body;
 
   const existingUser = await User.findOne({ email });
   if (existingUser) {
@@ -20,8 +19,8 @@ export const registerUser = async (req, res) => {
     name,
     email,
     password: hashedPassword,
-    avatar:
-      avatar || 'https://ac.goit.global/fullstack/react/default-avatar.jpg',
+    avatarUrl:
+      avatarUrl || 'https://ac.goit.global/fullstack/react/default-avatar.jpg',
   });
 
   const newSession = await createSession(newUser._id);
@@ -56,7 +55,6 @@ export const loginUser = async (req, res) => {
   res.status(200).json(user);
 };
 
-
 ///// {LOGOUT} /////
 export const logoutUser = async (req, res) => {
   const { sessionId } = req.cookies;
@@ -68,8 +66,8 @@ export const logoutUser = async (req, res) => {
   res.clearCookie('refreshToken');
 
   res.status(204).send();
-}
-  ///// {REFRESH SESSION} /////
+};
+///// {REFRESH SESSION} /////
 export const refreshUserSession = async (req, res) => {
   const { sessionId, refreshToken } = req.cookies;
 
