@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
 import { User } from '../../models/user.js';
+import { Session } from '../../models/session.js';
 
 export const registerUser = async (req, res) => {
   const { name, email, password, avatar } = req.body;
@@ -39,4 +40,16 @@ export const loginUser = async (req, res) => {
   }
 
   res.status(200).json(user);
+};
+
+export const logoutUser = async (req, res) => {
+  const { sessionId } = req.cookies;
+
+  await Session.deleteOne({ _id: sessionId });
+
+  res.clearCookie('sessionId');
+  res.clearCookie('accessToken');
+  res.clearCookie('refreshToken');
+
+  res.status(204).send();
 };
