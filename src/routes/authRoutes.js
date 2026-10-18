@@ -12,6 +12,6 @@ authRouter.post('/register', celebrate(registerUserSchema), registerUser);
 
 authRouter.post('/login', celebrate(loginUserSchema), loginUser);
 
-authRouter.post('/auth/refresh', refreshUserSession);
+authRouter.post('/refresh', refreshUserSession);
 
 export default authRouter;
