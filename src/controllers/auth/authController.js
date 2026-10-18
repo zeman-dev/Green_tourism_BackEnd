@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import createHttpError from 'http-errors';
 import { User } from '../../models/user.js';
 import { createSession, setSessionCookies } from '../../services/auth.js';
+import { Session } from '../../models/session.js';
 
 export const registerUser = async (req, res) => {
   const { name, email, password, avatar } = req.body;
@@ -42,6 +43,8 @@ export const loginUser = async (req, res) => {
   if (!isValidPassword) {
     throw createHttpError(401, 'Invalid credentials');
   }
+
+  await Session.deleteMany({ userId: user._id });
 
   const newSession = await createSession(user._id);
 
