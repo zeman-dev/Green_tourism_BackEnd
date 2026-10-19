@@ -10,6 +10,7 @@ import { upload } from '../middleware/multer.js';
 import {
   getUserWithStoriesSchema,
   savedArticleParamsSchema,
+  updateUserSchema,
 } from '../validations/userValidation.js';
 import {
   getMySavedStories,
@@ -19,6 +20,7 @@ import {
   addSavedArticle,
   removeSavedArticle,
 } from '../controllers/users/savedArticlesController.js';
+import { updateUser } from '../controllers/users/profileController.js';
 
 const router = Router();
 
@@ -44,6 +46,8 @@ router.patch(
   upload.single('avatar'),
   updateUserAvatar,
 );
+
+router.patch('/me', authenticate, celebrate(updateUserSchema), updateUser);
 
 router.post(
   '/saved-articles/:storyId',
