@@ -29,3 +29,13 @@ export const paginationSchema = {
     perPage: Joi.number().integer().min(5).max(30).default(10),
   }),
 };
+
+export const createStorySchema = {
+  [Segments.BODY]: Joi.object({
+    img: Joi.string().trim().required(),
+    title: Joi.string().trim().required(),
+    article: Joi.string().trim().required(),
+    category: Joi.string().hex().length(24).required(),
+    date: Joi.date().iso().required(),
+  }),
+};

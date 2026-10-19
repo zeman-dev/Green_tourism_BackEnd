@@ -10,3 +10,9 @@ export const getUserWithStoriesSchema = {
     perPage: Joi.number().integer().min(1).max(100).default(10),
   }),
 };
+
+export const savedArticleParamsSchema = {
+  [Segments.PARAMS]: Joi.object({
+    storyId: Joi.string().hex().length(24).required(),
+  }),
+};
