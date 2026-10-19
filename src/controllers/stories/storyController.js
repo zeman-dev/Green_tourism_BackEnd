@@ -114,6 +114,7 @@ export const getMySavedStories = async (req, res) => {
 };
 
 /////{ MY STORIES} /////
+
 export const getMyStories = async (req, res) => {
   const { page = 1, perPage = 10 } = req.query;
 
@@ -138,4 +139,21 @@ export const getMyStories = async (req, res) => {
     totalPages,
     stories,
   });
+};
+
+/////{CREATE STORY} /////
+
+export const createStory = async (req, res) => {
+  const { img, title, article, category, date } = req.body;
+
+  const story = await Story.create({
+    img,
+    title,
+    article,
+    category,
+    date,
+    ownerId: req.user._id,
+  });
+
+  res.status(201).json(story);
 };
