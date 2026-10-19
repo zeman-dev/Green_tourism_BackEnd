@@ -6,6 +6,7 @@ import {
   savedArticleParamsSchema,
 } from '../validations/userValidation.js';
 import { getUserWithStories } from '../controllers/users/userController.js';
+import { getCurrentUser } from '../controllers/users/userController.js';
 import { paginationSchema } from '../validations/storyValidation.js';
 import { getMySavedStories } from '../controllers/stories/storyController.js';
 import {
@@ -14,6 +15,8 @@ import {
 } from '../controllers/users/savedArticlesController.js';
 
 const router = Router();
+
+router.get('/me', authenticate, getCurrentUser);
 
 router.get('/:userId', celebrate(getUserWithStoriesSchema), getUserWithStories);
 

@@ -37,3 +37,16 @@ export const getUserWithStories = async (req, res) => {
     stories,
   });
 };
+
+export const getCurrentUser = async (req, res) => {
+  const user = req.user;
+
+  res.status(200).json({
+    user: {
+      _id: user._id,
+      username: user.name,
+      avatar: user.avatar,
+      articlesAmount: user.articlesAmount,
+    },
+  });
+};
