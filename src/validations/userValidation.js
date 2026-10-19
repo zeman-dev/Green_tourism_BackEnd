@@ -19,6 +19,13 @@ export const savedArticleParamsSchema = {
 
 export const updateUserSchema = {
   [Segments.BODY]: Joi.object({
-    name: Joi.string().trim().min(2).max(32).required(),
+    name: Joi.string().trim().min(2).max(32),
+    email: Joi.string().email().trim().lowercase().max(64),
+  }).min(1),
+};
+
+export const confirmEmailSchema = {
+  [Segments.BODY]: Joi.object({
+    token: Joi.string().required(),
   }),
 };
