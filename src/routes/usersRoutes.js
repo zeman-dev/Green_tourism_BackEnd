@@ -7,13 +7,23 @@ import {
 } from '../validations/userValidation.js';
 import { getUserWithStories } from '../controllers/users/userController.js';
 import { paginationSchema } from '../validations/storyValidation.js';
-import { getMySavedStories } from '../controllers/stories/storyController.js';
+import {
+  getMySavedStories,
+  getMyStories,
+} from '../controllers/stories/storyController.js';
 import {
   addSavedArticle,
   removeSavedArticle,
 } from '../controllers/users/savedArticlesController.js';
 
 const router = Router();
+
+router.get(
+  '/me/stories',
+  authenticate,
+  celebrate(paginationSchema),
+  getMyStories,
+);
 
 router.get('/:userId', celebrate(getUserWithStoriesSchema), getUserWithStories);
 
