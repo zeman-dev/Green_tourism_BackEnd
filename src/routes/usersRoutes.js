@@ -8,7 +8,10 @@ import {
 import { getUserWithStories } from '../controllers/users/userController.js';
 import { getCurrentUser } from '../controllers/users/userController.js';
 import { paginationSchema } from '../validations/storyValidation.js';
-import { getMySavedStories } from '../controllers/stories/storyController.js';
+import {
+  getMySavedStories,
+  getMyStories,
+} from '../controllers/stories/storyController.js';
 import {
   addSavedArticle,
   removeSavedArticle,
@@ -17,6 +20,12 @@ import {
 const router = Router();
 
 router.get('/me', authenticate, getCurrentUser);
+router.get(
+  '/me/stories',
+  authenticate,
+  celebrate(paginationSchema),
+  getMyStories,
+);
 
 router.get('/:userId', celebrate(getUserWithStoriesSchema), getUserWithStories);
 
