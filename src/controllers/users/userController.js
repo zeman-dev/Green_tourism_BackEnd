@@ -40,12 +40,11 @@ export const getUserWithStories = async (req, res) => {
 };
 
 export const updateUserAvatar = async (req, res) => {
-
   const { file, user } = req;
-if (!req.file) {
-    throw createHttpError(400, "No file");
+  if (!req.file) {
+    throw createHttpError(400, 'No file');
   }
- const result = await saveFileToCloudinary(file.buffer, user._id);
+  const result = await saveFileToCloudinary(file.buffer, user._id);
 
   const updatedUser = await User.findOneAndUpdate(
     { _id: user._id },
