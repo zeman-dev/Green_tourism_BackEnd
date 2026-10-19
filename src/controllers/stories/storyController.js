@@ -112,3 +112,30 @@ export const getMySavedStories = async (req, res) => {
     stories,
   });
 };
+
+/////{ MY STORIES} /////
+export const getMyStories = async (req, res) => {
+  const { page = 1, perPage = 10 } = req.query;
+
+  const skip = (page - 1) * perPage;
+
+  const storiesQuery = Story.find({ ownerId: req.user._id }).populate(
+    'ownerId',
+    'name avatarUrl',
+  );
+
+  const [totalStories, stories] = await Promise.all([
+    storiesQuery.clone().countDocuments(),
+    storiesQuery.skip(skip).limit(perPage).sort({ date: -1, _id: -1 }),
+  ]);
+
+  const totalPages = Math.ceil(totalStories / perPage);
+
+  res.status(200).json({
+    page,
+    perPage,
+    totalStories,
+    totalPages,
+    stories,
+  });
+};
