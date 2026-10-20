@@ -12,6 +12,7 @@ import {
   getUserWithStoriesSchema,
   savedArticleParamsSchema,
   updateUserSchema,
+  confirmEmailSchema,
 } from '../validations/userValidation.js';
 import {
   getMySavedStories,
@@ -21,7 +22,10 @@ import {
   addSavedArticle,
   removeSavedArticle,
 } from '../controllers/users/savedArticlesController.js';
-import { updateUser } from '../controllers/users/profileController.js';
+import {
+  updateUser,
+  confirmEmailChange,
+} from '../controllers/users/profileController.js';
 
 const router = Router();
 
@@ -50,6 +54,12 @@ router.patch(
 );
 
 router.patch('/me', authenticate, celebrate(updateUserSchema), updateUser);
+
+router.post(
+  '/confirm-email',
+  celebrate(confirmEmailSchema),
+  confirmEmailChange,
+);
 
 router.post(
   '/saved-articles/:storyId',
