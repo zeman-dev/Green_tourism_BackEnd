@@ -11,11 +11,15 @@ const storySchema = new Schema(
       type: String,
       required: true,
       trim: true,
+      minlength: 2,
+      maxlength: 40,
     },
     article: {
       type: String,
       required: true,
       trim: true,
+      minlength: 12,
+      maxlength: 3000,
     },
     category: {
       type: Schema.Types.ObjectId,
@@ -37,6 +41,7 @@ const storySchema = new Schema(
     date: {
       type: Date,
       required: true,
+      default: Date.now,
     },
   },
   {

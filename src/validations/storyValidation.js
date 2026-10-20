@@ -32,10 +32,8 @@ export const paginationSchema = {
 
 export const createStorySchema = {
   [Segments.BODY]: Joi.object({
-    img: Joi.string().trim().required(),
-    title: Joi.string().trim().required(),
-    article: Joi.string().trim().required(),
+    title: Joi.string().trim().min(2).max(40).required(),
+    article: Joi.string().trim().min(12).max(3000).required(),
     category: Joi.string().hex().length(24).required(),
-    date: Joi.date().iso().required(),
   }),
 };
