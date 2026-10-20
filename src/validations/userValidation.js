@@ -16,3 +16,9 @@ export const savedArticleParamsSchema = {
     storyId: Joi.string().hex().length(24).required(),
   }),
 };
+
+export const updateUserSchema = {
+  [Segments.BODY]: Joi.object({
+    name: Joi.string().trim().min(2).max(32).required(),
+  }),
+};

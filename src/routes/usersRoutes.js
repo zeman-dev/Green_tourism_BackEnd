@@ -1,12 +1,17 @@
 import { celebrate } from 'celebrate';
 import { Router } from 'express';
+import {
+  getUserWithStories,
+  updateUserAvatar,
+} from '../controllers/users/userController.js';
+import { paginationSchema } from '../validations/storyValidation.js';
 import { authenticate } from '../middleware/authenticate.js';
+import { upload } from '../middleware/multer.js';
 import {
   getUserWithStoriesSchema,
   savedArticleParamsSchema,
+  updateUserSchema,
 } from '../validations/userValidation.js';
-import { getUserWithStories } from '../controllers/users/userController.js';
-import { paginationSchema } from '../validations/storyValidation.js';
 import {
   getMySavedStories,
   getMyStories,
@@ -15,6 +20,7 @@ import {
   addSavedArticle,
   removeSavedArticle,
 } from '../controllers/users/savedArticlesController.js';
+import { updateUser } from '../controllers/users/profileController.js';
 
 const router = Router();
 
@@ -33,6 +39,15 @@ router.get(
   celebrate(paginationSchema),
   getMySavedStories,
 );
+
+router.patch(
+  '/me/avatar',
+  authenticate,
+  upload.single('avatar'),
+  updateUserAvatar,
+);
+
+router.patch('/me', authenticate, celebrate(updateUserSchema), updateUser);
 
 router.post(
   '/saved-articles/:storyId',
