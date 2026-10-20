@@ -46,7 +46,7 @@ export const getCurrentUser = async (req, res) => {
     user: {
       _id: user._id,
       name: user.name,
-      avatarUrl: user.avatar,
+      avatarUrl: user.avatarUrl,
       articlesAmount: user.articlesAmount,
     },
   });
