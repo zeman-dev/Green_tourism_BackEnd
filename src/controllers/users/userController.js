@@ -54,3 +54,16 @@ export const updateUserAvatar = async (req, res) => {
 
   res.status(200).json({ url: updatedUser.avatarUrl });
 };
+
+export const getCurrentUser = async (req, res) => {
+  const user = req.user;
+
+  res.status(200).json({
+    user: {
+      _id: user._id,
+      username: user.name,
+      avatar: user.avatar,
+      articlesAmount: user.articlesAmount,
+    },
+  });
+};
