@@ -39,6 +39,19 @@ export const getUserWithStories = async (req, res) => {
   });
 };
 
+export const getCurrentUser = async (req, res) => {
+  const user = req.user;
+
+  res.status(200).json({
+    user: {
+      _id: user._id,
+      name: user.name,
+      avatarUrl: user.avatar,
+      articlesAmount: user.articlesAmount,
+    },
+  });
+};
+
 export const updateUserAvatar = async (req, res) => {
   const { file, user } = req;
   if (!req.file) {
@@ -53,17 +66,4 @@ export const updateUserAvatar = async (req, res) => {
   );
 
   res.status(200).json({ url: updatedUser.avatarUrl });
-};
-
-export const getCurrentUser = async (req, res) => {
-  const user = req.user;
-
-  res.status(200).json({
-    user: {
-      _id: user._id,
-      username: user.name,
-      avatar: user.avatar,
-      articlesAmount: user.articlesAmount,
-    },
-  });
 };
