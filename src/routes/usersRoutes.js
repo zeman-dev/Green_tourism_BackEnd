@@ -4,6 +4,7 @@ import {
   getUserWithStories,
   updateUserAvatar,
 } from '../controllers/users/userController.js';
+import { getCurrentUser } from '../controllers/users/userController.js';
 import { paginationSchema } from '../validations/storyValidation.js';
 import { authenticate } from '../middleware/authenticate.js';
 import { upload } from '../middleware/multer.js';
@@ -24,6 +25,7 @@ import { updateUser } from '../controllers/users/profileController.js';
 
 const router = Router();
 
+router.get('/me', authenticate, getCurrentUser);
 router.get(
   '/me/stories',
   authenticate,
