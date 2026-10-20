@@ -32,3 +32,26 @@ export async function saveFileToCloudinary(buffer, userId) {
     uploadStream.end(buffer);
   });
 }
+
+export async function saveStoryImageToCloudinary(buffer) {
+  const options = {
+    folder: 'Green_tourism_BackEnd/stories',
+    resource_type: 'image',
+    transformation: [
+      { width: 1200, crop: 'limit' },
+      { fetch_format: 'auto', quality: 'auto' },
+    ],
+  };
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      options,
+      (error, result) => {
+        if (error) {
+          return reject(error);
+        }
+        resolve(result);
+      },
+    );
+    uploadStream.end(buffer);
+  });
+}

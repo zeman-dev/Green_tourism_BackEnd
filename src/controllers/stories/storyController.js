@@ -1,6 +1,7 @@
 import createHttpError from 'http-errors';
 import { Story } from '../../models/story.js';
 import { Categories } from '../../models/category.js';
+import { saveStoryImageToCloudinary } from '../../utils/saveFileToCloudinary.js';
 
 /////{ALL STORIES} /////
 
@@ -144,16 +145,28 @@ export const getMyStories = async (req, res) => {
 /////{CREATE STORY} /////
 
 export const createStory = async (req, res) => {
-  const { img, title, article, category, date } = req.body;
+  const { title, article, category } = req.body;
+
+  if (!req.file) {
+    throw createHttpError(400, 'Cover image is required');
+  }
+
+  const categoryExists = await Category.exists({ _id: category });
+  if (!categoryExists) {
+    throw createHttpError(404, 'Category not found');
+  }
+
+  const img = await saveStoryImageToCloudinary(req.file.buffer);
 
   const story = await Story.create({
-    img,
+    img: img.secure_url,
     title,
     article,
     category,
-    date,
     ownerId: req.user._id,
   });
+
+  await User.findByIdAndUpdate(req.user._id, { $inc: { articlesAmount: 1 } });
 
   res.status(201).json(story);
 };
