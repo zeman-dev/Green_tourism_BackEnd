@@ -17,7 +17,21 @@ export const updateUser = async (req, res) => {
     if (existingUser) {
       throw createHttpError(409, 'Email in use');
     }
+  }
 
+  let user = req.user;
+
+  if (name !== undefined) {
+    user = await User.findByIdAndUpdate(
+      userId,
+      { name },
+      {
+        returnDocument: 'after',
+        runValidators: true,
+      },
+    );
+  }
+  if (isEmailChange) {
     const token = jwt.sign(
       { sub: userId.toString(), email, purpose: 'email-change' },
       process.env.JWT_SECRET,
@@ -32,7 +46,7 @@ export const updateUser = async (req, res) => {
     );
     const templateSource = await readFile(templatePath, 'utf-8');
     const html = handlebars.compile(templateSource)({
-      name: name ?? req.user.name,
+      name: user.name,
       newEmail: email,
       link,
     });
@@ -53,20 +67,6 @@ export const updateUser = async (req, res) => {
       );
     }
   }
-
-  let user = req.user;
-
-  if (name !== undefined) {
-    user = await User.findByIdAndUpdate(
-      userId,
-      { name },
-      {
-        returnDocument: 'after',
-        runValidators: true,
-      },
-    );
-  }
-
   res.status(200).json({ user, emailVerificationSent: isEmailChange });
 };
 
@@ -112,5 +112,5 @@ export const confirmEmailChange = async (req, res) => {
     throw createHttpError(404, 'User not found');
   }
 
-  res.status(200).json(user);
+  res.status(200).json({ message: 'Email changed successfully' });
 };
