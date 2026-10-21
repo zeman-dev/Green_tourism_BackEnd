@@ -23,6 +23,7 @@ export const getUsersSchema = {
     perPage: Joi.number().integer().min(1).max(100).default(10),
   }),
 };
+
 export const updateUserSchema = {
   [Segments.BODY]: Joi.object({
     name: Joi.string().trim().min(2).max(32),
