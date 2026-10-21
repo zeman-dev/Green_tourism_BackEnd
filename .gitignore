@@ -3,6 +3,7 @@
 .idea
 
 .postman/
+postman/
 # Logs
 logs
 *.log
