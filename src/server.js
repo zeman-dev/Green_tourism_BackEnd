@@ -19,10 +19,7 @@ const app = express();
 
 app.use(helmet());
 
-app.use(cors({
-  origin: `${process.env.FRONTEND_DOMAIN}`,
-  credentials: true,
-}));
+app.use(cors());
 
 app.use(logger());
 
