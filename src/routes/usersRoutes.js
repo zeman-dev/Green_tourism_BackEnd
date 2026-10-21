@@ -1,6 +1,7 @@
 import { celebrate } from 'celebrate';
 import { Router } from 'express';
 import {
+  getUsers,
   getUserWithStories,
   updateUserAvatar,
 } from '../controllers/users/userController.js';
@@ -8,6 +9,7 @@ import { paginationSchema } from '../validations/storyValidation.js';
 import { authenticate } from '../middleware/authenticate.js';
 import { upload } from '../middleware/multer.js';
 import {
+  getUsersSchema,
   getUserWithStoriesSchema,
   savedArticleParamsSchema,
 } from '../validations/userValidation.js';
@@ -37,6 +39,8 @@ router.get(
   celebrate(paginationSchema),
   getMySavedStories,
 );
+
+router.get('/', celebrate(getUsersSchema), getUsers);
 
 router.patch(
   '/me/avatar',

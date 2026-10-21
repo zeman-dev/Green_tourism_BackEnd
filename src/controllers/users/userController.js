@@ -54,3 +54,30 @@ export const updateUserAvatar = async (req, res) => {
 
   res.status(200).json({ url: updatedUser.avatarUrl });
 };
+
+
+export const getUsers = async (req, res ) => {
+    const page = Number(req.query.page) || 1;
+    const perPage = Number(req.query.perPage) || 10;
+    const skip = (page - 1) * perPage;
+
+    const [users, totalUsers] = await Promise.all([
+      User.find()
+        .select('-password -email')
+        .sort({ createdAt: -1, _id: -1 }) 
+        .skip(skip)
+        .limit(perPage),
+      User.countDocuments(),
+    ]);
+
+    const totalPages = Math.ceil(totalUsers / perPage);
+
+    res.status(200).json({
+      page,
+      perPage,
+      totalUsers,
+      totalPages,
+      users,
+    });
+  
+};
