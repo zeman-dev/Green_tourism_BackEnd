@@ -2,6 +2,8 @@ import express from 'express';
 import helmet from 'helmet';
 import 'dotenv/config';
 import cors from 'cors';
+import { readFileSync } from 'node:fs';
+import swaggerUi from 'swagger-ui-express';
 import { logger } from './middleware/logger.js';
 import { connectMongoDB } from './db/connectToMongoDB.js';
 import { errorHandler } from './middleware/errorHandler.js';
@@ -29,6 +31,21 @@ app.use(logger());
 app.use(express.json());
 
 app.use(cookieParser());
+
+const swaggerDocument = JSON.parse(
+  readFileSync(new URL('../swagger.json', import.meta.url), 'utf-8'),
+);
+
+app.use(
+  '/api-docs',
+  (req, res, next) => {
+    res.removeHeader('Content-Security-Policy');
+    next();
+  },
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument),
+);
+
 // {ROUTES}
 
 app.use('/api/auth', authRouter);
