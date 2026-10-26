@@ -314,7 +314,8 @@
             "maxLength": 32
           },
           "avatarUrl": {
-            "type": "string"
+            "type": "string",
+            "format": "uri"
           },
           "articlesAmount": {
             "type": "integer",
