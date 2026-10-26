@@ -278,17 +278,10 @@
                 "minimum": 0
               }
             },
-            "required": [
-              "_id",
-              "name",
-              "avatarUrl",
-              "articlesAmount"
-            ]
+            "required": ["_id", "name", "avatarUrl", "articlesAmount"]
           }
         },
-        "required": [
-          "user"
-        ]
+        "required": ["user"]
       },
       "PublicUserProfile": {
         "type": "object",
@@ -310,11 +303,7 @@
             "minimum": 0
           }
         },
-        "required": [
-          "_id",
-          "username",
-          "articlesAmount"
-        ]
+        "required": ["_id", "username", "articlesAmount"]
       },
       "Category": {
         "type": "object",
@@ -329,10 +318,7 @@
             "type": "integer"
           }
         },
-        "required": [
-          "_id",
-          "category"
-        ]
+        "required": ["_id", "category"]
       },
       "PopulatedCategory": {
         "type": "object",
@@ -344,10 +330,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "_id",
-          "category"
-        ]
+        "required": ["_id", "category"]
       },
       "PopulatedOwner": {
         "type": "object",
@@ -363,10 +346,7 @@
             "format": "uri"
           }
         },
-        "required": [
-          "_id",
-          "name"
-        ]
+        "required": ["_id", "name"]
       },
       "Story": {
         "type": "object",
@@ -414,16 +394,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "_id",
-          "img",
-          "title",
-          "article",
-          "category",
-          "rate",
-          "ownerId",
-          "date"
-        ]
+        "required": ["_id", "img", "title", "article", "category", "rate", "ownerId", "date"]
       },
       "StoryDetail": {
         "type": "object",
@@ -469,16 +440,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "_id",
-          "img",
-          "title",
-          "article",
-          "category",
-          "rate",
-          "ownerId",
-          "date"
-        ]
+        "required": ["_id", "img", "title", "article", "category", "rate", "ownerId", "date"]
       },
       "Pagination": {
         "type": "object",
@@ -500,12 +462,7 @@
             "minimum": 0
           }
         },
-        "required": [
-          "page",
-          "perPage",
-          "totalStories",
-          "totalPages"
-        ]
+        "required": ["page", "perPage", "totalStories", "totalPages"]
       },
       "StoryListResponse": {
         "allOf": [
@@ -522,9 +479,7 @@
                 }
               }
             },
-            "required": [
-              "stories"
-            ]
+            "required": ["stories"]
           }
         ]
       },
@@ -557,14 +512,7 @@
             }
           }
         },
-        "required": [
-          "user",
-          "page",
-          "perPage",
-          "totalStories",
-          "totalPages",
-          "stories"
-        ]
+        "required": ["user", "page", "perPage", "totalStories", "totalPages", "stories"]
       },
       "UsersListResponse": {
         "type": "object",
@@ -592,13 +540,7 @@
             }
           }
         },
-        "required": [
-          "page",
-          "perPage",
-          "totalUsers",
-          "totalPages",
-          "users"
-        ]
+        "required": ["page", "perPage", "totalUsers", "totalPages", "users"]
       },
       "SavedArticlesResponse": {
         "type": "object",
@@ -610,9 +552,7 @@
             }
           }
         },
-        "required": [
-          "savedArticles"
-        ]
+        "required": ["savedArticles"]
       },
       "MessageResponse": {
         "type": "object",
@@ -621,9 +561,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "message"
-        ]
+        "required": ["message"]
       },
       "UpdateUserResponse": {
         "type": "object",
@@ -636,10 +574,7 @@
             "description": "True when an email change was requested and a confirmation email was sent."
           }
         },
-        "required": [
-          "user",
-          "emailVerificationSent"
-        ]
+        "required": ["user", "emailVerificationSent"]
       },
       "AvatarResponse": {
         "type": "object",
@@ -649,9 +584,7 @@
             "format": "uri"
           }
         },
-        "required": [
-          "url"
-        ]
+        "required": ["url"]
       },
       "RegisterUserRequest": {
         "type": "object",
@@ -679,11 +612,7 @@
             "pattern": "^(https?://.+)?$"
           }
         },
-        "required": [
-          "name",
-          "email",
-          "password"
-        ]
+        "required": ["name", "email", "password"]
       },
       "LoginUserRequest": {
         "type": "object",
@@ -699,10 +628,7 @@
             "maxLength": 72
           }
         },
-        "required": [
-          "email",
-          "password"
-        ]
+        "required": ["email", "password"]
       },
       "UpdateUserRequest": {
         "type": "object",
@@ -729,9 +655,7 @@
             "description": "JWT sent by email with purpose \"email-change\"."
           }
         },
-        "required": [
-          "token"
-        ]
+        "required": ["token"]
       },
       "CreateStoryRequest": {
         "type": "object",
@@ -755,12 +679,7 @@
             "$ref": "#/components/schemas/ObjectId"
           }
         },
-        "required": [
-          "img",
-          "title",
-          "article",
-          "category"
-        ]
+        "required": ["img", "title", "article", "category"]
       },
       "UpdateAvatarRequest": {
         "type": "object",
@@ -771,201 +690,14 @@
             "description": "Image file (image/*, max 2 MB)."
           }
         },
-        "required": [
-          "avatar"
-        ]
-      },
-      "StoryOwnerPopulatedName": {
-        "type": "object",
-        "properties": {
-          "_id": {},
-          "name": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "_id",
-          "name"
-        ]
-      },
-      "StoryOwnerPopulatedNameAvatar": {
-        "type": "object",
-        "properties": {
-          "_id": {},
-          "name": {
-            "type": "string"
-          },
-          "avatarUrl": {
-            "type": "string",
-            "format": "uri"
-          }
-        },
-        "required": [
-          "_id",
-          "name"
-        ]
-      },
-      "StoryWithOwnerName": {
-        "type": "object",
-        "properties": {
-          "_id": {},
-          "img": {
-            "type": "string",
-            "format": "uri",
-            "description": "Cloudinary URL of the cover image."
-          },
-          "title": {
-            "type": "string",
-            "minLength": 2,
-            "maxLength": 40
-          },
-          "article": {
-            "type": "string",
-            "minLength": 12,
-            "maxLength": 3000
-          },
-          "category": {},
-          "rate": {
-            "type": "integer",
-            "minimum": 0,
-            "default": 0,
-            "description": "Number of users who saved the story."
-          },
-          "ownerId": {},
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "_id",
-          "img",
-          "title",
-          "article",
-          "category",
-          "rate",
-          "ownerId",
-          "date"
-        ]
-      },
-      "StoryWithOwnerNameAvatar": {
-        "type": "object",
-        "properties": {
-          "_id": {},
-          "img": {
-            "type": "string",
-            "format": "uri",
-            "description": "Cloudinary URL of the cover image."
-          },
-          "title": {
-            "type": "string",
-            "minLength": 2,
-            "maxLength": 40
-          },
-          "article": {
-            "type": "string",
-            "minLength": 12,
-            "maxLength": 3000
-          },
-          "category": {},
-          "rate": {
-            "type": "integer",
-            "minimum": 0,
-            "default": 0,
-            "description": "Number of users who saved the story."
-          },
-          "ownerId": {},
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "_id",
-          "img",
-          "title",
-          "article",
-          "category",
-          "rate",
-          "ownerId",
-          "date"
-        ]
-      },
-      "StoryListResponseAll": {
-        "allOf": [
-          {},
-          {
-            "type": "object",
-            "properties": {
-              "stories": {
-                "type": "array",
-                "items": {}
-              }
-            },
-            "required": [
-              "stories"
-            ]
-          }
-        ]
-      },
-      "StoryListResponseRec": {
-        "allOf": [
-          {},
-          {
-            "type": "object",
-            "properties": {
-              "stories": {
-                "type": "array",
-                "items": {}
-              }
-            },
-            "required": [
-              "stories"
-            ]
-          }
-        ]
-      },
-      "StoryListResponseMine": {
-        "allOf": [
-          {},
-          {
-            "type": "object",
-            "properties": {
-              "stories": {
-                "type": "array",
-                "items": {}
-              }
-            },
-            "required": [
-              "stories"
-            ]
-          }
-        ]
+        "required": ["avatar"]
       }
     }
   },
   "paths": {
     "/api/auth/register": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Register a new user",
         "description": "Creates a user, starts a session and sets the sessionId, accessToken and refreshToken cookies.",
         "requestBody": {
@@ -1022,9 +754,7 @@
     },
     "/api/auth/login": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Log in",
         "description": "Validates credentials, removes existing sessions for the user, starts a new session and sets cookies.",
         "requestBody": {
@@ -1081,9 +811,7 @@
     },
     "/api/auth/logout": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Log out",
         "description": "Deletes the current session and clears the session cookies.",
         "security": [
@@ -1111,9 +839,7 @@
     },
     "/api/auth/refresh": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Refresh session",
         "description": "Rotates the session using the sessionId and refreshToken cookies. The old session is deleted and new cookies are set.",
         "security": [
@@ -1156,9 +882,7 @@
     },
     "/api/users/me": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get current user",
         "description": "Returns the authenticated user's profile summary.",
         "security": [
@@ -1191,9 +915,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Update current user profile",
         "description": "Updates the user's name and/or email. Changing the email sends a confirmation email and does not change it immediately.",
         "security": [
@@ -1268,9 +990,7 @@
     },
     "/api/users/me/avatar": {
       "patch": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Update current user avatar",
         "description": "Uploads a new avatar image to Cloudinary and updates the user's avatarUrl.",
         "security": [
@@ -1325,9 +1045,7 @@
     },
     "/api/users/me/stories": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get current user's stories",
         "description": "Returns stories owned by the authenticated user, newest first, with populated owner.",
         "security": [
@@ -1350,7 +1068,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "": "#/components/schemas/StoryListResponseMine"
+                  "$ref": "#/components/schemas/StoryListResponse"
                 }
               }
             }
@@ -1380,9 +1098,7 @@
     },
     "/api/users/me/saved-stories": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get current user's saved stories",
         "description": "Returns stories saved by the authenticated user, newest first, with populated owner.",
         "security": [
@@ -1405,7 +1121,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "": "#/components/schemas/StoryListResponseMine"
+                  "$ref": "#/components/schemas/StoryListResponse"
                 }
               }
             }
@@ -1435,9 +1151,7 @@
     },
     "/api/users/{userId}": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get user with stories",
         "description": "Returns a public profile summary and the user's stories.",
         "parameters": [
@@ -1487,9 +1201,7 @@
     },
     "/api/users": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "List users",
         "description": "Returns a paginated list of users ordered by creation date (newest first). Email and password are excluded.",
         "parameters": [
@@ -1526,9 +1238,7 @@
     },
     "/api/users/confirm-email": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Confirm email change",
         "description": "Verifies the email-change JWT and applies the new email address.",
         "requestBody": {
@@ -1597,9 +1307,7 @@
     },
     "/api/users/saved-articles/{storyId}": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Save a story",
         "description": "Adds the story to the authenticated user's saved articles and increments the story rate. Idempotent if already saved.",
         "security": [
@@ -1657,9 +1365,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Remove a saved story",
         "description": "Removes the story from the authenticated user's saved articles and decrements the story rate. Idempotent if not saved.",
         "security": [
@@ -1709,9 +1415,7 @@
     },
     "/api/stories": {
       "get": {
-        "tags": [
-          "Stories"
-        ],
+        "tags": ["Stories"],
         "summary": "List stories",
         "description": "Returns stories sorted by creation date or by rate when type=popular. Optionally filters by category name.",
         "parameters": [
@@ -1731,9 +1435,7 @@
             "description": "Sort by popularity (rate descending) when set to \"popular\".",
             "schema": {
               "type": "string",
-              "enum": [
-                "popular"
-              ]
+              "enum": ["popular"]
             }
           }
         ],
@@ -1743,7 +1445,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "": "#/components/schemas/StoryListResponseAll"
+                  "$ref": "#/components/schemas/StoryListResponse"
                 }
               }
             }
@@ -1771,9 +1473,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Stories"
-        ],
+        "tags": ["Stories"],
         "summary": "Create a story",
         "description": "Uploads the cover image to Cloudinary, creates the story for the authenticated user and increments the user's articlesAmount.",
         "security": [
@@ -1845,9 +1545,7 @@
     },
     "/api/stories/recommended": {
       "get": {
-        "tags": [
-          "Stories"
-        ],
+        "tags": ["Stories"],
         "summary": "Get recommended stories",
         "description": "Returns the highest-rated stories, optionally filtered by category name.",
         "parameters": [
@@ -1876,7 +1574,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "": "#/components/schemas/StoryListResponseRec"
+                  "$ref": "#/components/schemas/StoryListResponse"
                 }
               }
             }
@@ -1906,9 +1604,7 @@
     },
     "/api/stories/{storyId}": {
       "get": {
-        "tags": [
-          "Stories"
-        ],
+        "tags": ["Stories"],
         "summary": "Get story by ID",
         "description": "Returns a story with its category and owner populated.",
         "parameters": [
@@ -1952,9 +1648,7 @@
     },
     "/api/categories": {
       "get": {
-        "tags": [
-          "Categories"
-        ],
+        "tags": ["Categories"],
         "summary": "List categories",
         "description": "Returns all story categories sorted alphabetically by name.",
         "responses": {

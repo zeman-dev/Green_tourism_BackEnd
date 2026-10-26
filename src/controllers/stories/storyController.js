@@ -5,26 +5,20 @@ import { saveStoryImageToCloudinary } from '../../utils/saveFileToCloudinary.js'
 
 /////{ALL STORIES} /////
 
-
 export const getAllStories = async (req, res) => {
   const { page = 1, perPage = 10, category, type } = req.query;
 
   const skip = (page - 1) * perPage;
-
   const sort =
-    type === 'popular'
-      ? { rate: -1, _id: 1 }
-      : { createdAt: -1, _id: -1 };
+    type === 'popular' ? { rate: -1, _id: 1 } : { createdAt: -1, _id: -1 };
 
-  const storiesQuery = Story.find().populate('ownerId', 'name');
+  const storiesQuery = Story.find();
 
   if (category) {
     const categoryDoc = await Categories.findOne({ category });
-
     if (categoryDoc === null) {
       throw createHttpError(404, 'Category not found');
     }
-
     storiesQuery.where('category').equals(categoryDoc._id);
   }
 
