@@ -135,9 +135,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "message"
-        ]
+        "required": ["message"]
       },
       "ValidationError": {
         "type": "object",
@@ -257,12 +255,7 @@
             "format": "date-time"
           }
         },
-        "required": [
-          "_id",
-          "name",
-          "avatarUrl",
-          "articlesAmount"
-        ]
+        "required": ["_id", "name", "avatarUrl", "articlesAmount"]
       },
       "CurrentUser": {
         "type": "object",
