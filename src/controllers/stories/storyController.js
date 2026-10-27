@@ -2,6 +2,7 @@ import createHttpError from 'http-errors';
 import { Story } from '../../models/story.js';
 import { Categories } from '../../models/category.js';
 import { saveStoryImageToCloudinary } from '../../utils/saveFileToCloudinary.js';
+import { User } from '../../models/user.js';
 
 /////{ALL STORIES} /////
 
