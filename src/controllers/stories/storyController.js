@@ -157,7 +157,7 @@ export const createStory = async (req, res) => {
     throw createHttpError(400, 'Cover image is required');
   }
 
-  const categoryExists = await Category.exists({ _id: category });
+  const categoryExists = await Categories.exists({ _id: category });
   if (!categoryExists) {
     throw createHttpError(404, 'Category not found');
   }
