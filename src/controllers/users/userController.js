@@ -28,7 +28,7 @@ export const getUserWithStories = async (req, res) => {
     user: {
       _id: user._id,
       username: user.name,
-      avatar: user.avatar,
+      avatarUrl: user.avatarUrl,
       articlesAmount: user.articlesAmount,
     },
     page,
