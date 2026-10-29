@@ -502,9 +502,9 @@
             "type": "string",
             "description": "The user's name."
           },
-          "avatarUrl": {
+          "avatar": {
             "type": "string",
-            "description": "URL of the user's avatar."
+            "description": "Legacy avatar field. It is read from a non-existent model property and is normally omitted from the JSON response."
           },
           "articlesAmount": {
             "type": "integer",
